@@ -1,0 +1,12 @@
+{
+  "canisters": {
+    "encrypter": {
+      "type": "custom",
+      "main": "src/index.ts",
+      "candid": "src/index.did",
+      "build": "npx azle encrypter",
+      "wasm": ".azle/encrypter/encrypter.wasm",
+      "gzip": true
+    }
+  }
+}
