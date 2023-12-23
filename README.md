@@ -1,4 +1,4 @@
-# Expense Tracker
+# Encrypter
 
 This typescript smart contract is my submission for The Codefest Hackathon.
 
