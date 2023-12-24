@@ -1,5 +1,4 @@
-import { Canister, text, query } from 'azle'
-
+import { Canister, int64, query, text } from 'azle';
 
 function encrypt(word: string, amount: number): string {
   let result = '';
@@ -8,7 +7,9 @@ function encrypt(word: string, amount: number): string {
     if (/[a-zA-Z]/.test(char)) {
       const isUpperCase = char === char.toUpperCase();
       const offset = isUpperCase ? 65 : 97;
-      const encryptedChar = String.fromCharCode((char.charCodeAt(0) - offset + amount) % 26 + offset);
+      const encryptedChar = String.fromCharCode(
+        ((char.charCodeAt(0) - offset + amount) % 26) + offset,
+      );
       result += isUpperCase ? encryptedChar : encryptedChar.toLowerCase();
     } else {
       result += char;
@@ -18,8 +19,8 @@ function encrypt(word: string, amount: number): string {
 }
 
 export default Canister({
-  Encrypt : query([text, text], text, (text, amt) => {
-    const amountOfShift = parseInt(amt);
+  Encrypt: query([text, int64], text, (text, amt) => {
+    const amountOfShift = Number(amt);
     if (isNaN(amountOfShift)) {
       throw new Error('Shift parameter must be a valid integer');
     }
